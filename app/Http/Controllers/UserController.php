@@ -64,7 +64,7 @@ class UserController extends Controller
         UserModel::where('username', 'customer-1')->update($data); //update data user
        */
 
-       // JS 4 prak 2.4
+       /* JS 4 prak 2.4
        $user = UserModel::where('level_id', 2)->count(); // hitung jumlah data user dengan level_id 2
        // dd($user);
        $user = UserModel::firstOrNew(
@@ -79,5 +79,25 @@ class UserController extends Controller
     
 
     return view('user', ['data' => $user]);
-}
+    */
+
+    // JS 4 prak 2.5
+    $user = UserModel::create([ 
+        'username' => 'manager11', 
+        'nama' => 'Manager11', 
+        'password' => Hash::make('12345'), 
+        'level_id' => 2, 
+         
+        ]); 
+         
+        $user->username = 'manager12'; 
+         
+        $user->save() ; 
+         
+        $user->wasChanged(); // true 
+        $user->wasChanged('username'); // true 
+        $user->wasChanged(['username', 'level_id']); // true 
+        $user->wasChanged('nama'); // false 
+        dd($user->wasChanged(['nama', 'username'])); // true
+    }
 }
