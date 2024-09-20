@@ -29,8 +29,8 @@ class UserController extends Controller
         // dd($user);
 
         // JS 4 prak 2.3 no 3
-        $user = UserModel::where('level_id', 2)->count();
-        return view('user', ['data' => $user]);
+       // $user = UserModel::where('level_id', 2)->count();
+        // return view('user', ['data' => $user]);
 
         //JS 4 prak 1
         /*
@@ -63,6 +63,21 @@ class UserController extends Controller
         ];
         UserModel::where('username', 'customer-1')->update($data); //update data user
        */
-         
-    }
+
+       // JS 4 prak 2.4
+       $user = UserModel::where('level_id', 2)->count(); // hitung jumlah data user dengan level_id 2
+       // dd($user);
+       $user = UserModel::firstOrNew(
+        [
+            'username' => 'manager33',
+            'nama' => 'Manager Tiga Tiga',
+            'password' => Hash::make('12345'),
+            'level_id' => 2
+        ],
+    );
+    $user->save();
+    
+
+    return view('user', ['data' => $user]);
+}
 }
