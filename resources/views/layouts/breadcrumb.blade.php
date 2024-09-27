@@ -11,5 +11,5 @@
           </ol>
         </div>
       </div>
-    </div><!-- /.container-fluid -->
+    </div><!-- /.container fluid -->
   </section>
