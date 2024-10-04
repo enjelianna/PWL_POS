@@ -16,6 +16,8 @@
                 <form method="POST" action="{{ url('/barang/' . $barang->barang_id) }}" class="formhorizontal">
                     @csrf
                     {!! method_field('PUT') !!} <!-- tambahkan baris ini untuk proses edit yang butuh method PUT -->
+                    
+                    <!-- Kategori Field -->
                     <div class="form-group row">
                         <label class="col-1 control-label col-form-label">kategori</label>
                         <div class="col-11">
@@ -31,6 +33,7 @@
                             @enderror
                         </div>
                     </div>
+                    <!-- Barang kode Field -->
                     <div class="form-group row">
                         <label class="col-1 control-label col-form-label">Kode barang</label>
                         <div class="col-11">
@@ -41,6 +44,7 @@
                             @enderror
                         </div>
                     </div>
+                    <!-- Nama barang Field -->
                     <div class="form-group row">
                         <label class="col-1 control-label col-form-label">Nama barang</label>
                         <div class="col-11">
@@ -51,6 +55,7 @@
                             @enderror
                         </div>
                     </div>
+                    <!-- Harga jual Field -->
                     <div class="form-group row">
                         <label class="col-1 control-label col-form-label">Harga jual</label>
                         <div class="col-11">
@@ -61,6 +66,7 @@
                             @enderror
                         </div>
                     </div>
+                    <!-- harga beli Field -->
                     <div class="form-group row">
                         <label class="col-1 control-label col-form-label">Harga beli</label>
                         <div class="col-11">
@@ -71,6 +77,7 @@
                             @enderror
                         </div>
                     </div>
+                    <!-- Submit and Back Buttons -->
                     <div class="form-group row">
                         <label class="col-1 control-label col-form-label"></label>
                         <div class="col-11">
