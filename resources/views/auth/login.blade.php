@@ -20,7 +20,7 @@
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a href="{{ url('/') }}" class="h1"><b>POS</b>pwl</a>
+                <a href="{{ url('/') }}" class="h1"><b>Project</b>PWL</a>
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
