@@ -77,9 +77,9 @@
 <body>
     <table class="border-bottom-header">
         <tr>
-            <td width="15%" class="text-center">
-                <img src="{{ asset('polinema-bw.jpg') }}" alt="Logo" style="max-height: 80px; width: auto;">            
-            </td>
+            <td width="15%" class="text-center"><img src="{{ asset('polinema-bw.jpg')
+}}"></td>
+            <td width="85%">
                 <span class="text-center d-block font-11 font-bold mb-1">KEMENTERIAN
                     PENDIDIKAN, KEBUDAYAAN, RISET, DAN TEKNOLOGI</span>
                 <span class="text-center d-block font-13 font-bold mb-1">POLITEKNIK NEGERI
@@ -102,12 +102,12 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($level as $b)
-                    <tr>
-                        <td class="text-center">{{ $loop->iteration }}</td>
-                        <td>{{ $b->level_kode }}</td>
-                        <td>{{ $b->level_nama }}</td>
-                    </tr>
+                @foreach($level as $l)
+                <tr>
+                    <td class="text-center">{{ $loop->iteration }}</td>
+                    <td>{{ $l->level_kode }}</td>
+                    <td>{{ $l->level_nama }}</td>
+                </tr>
                 @endforeach
             </tbody>
         </table>

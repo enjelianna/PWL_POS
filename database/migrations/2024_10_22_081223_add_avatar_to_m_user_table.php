@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Menambahkan kolom 'avatar' pada tabel 'm_user'
         Schema::table('m_user', function (Blueprint $table) {
-            $table->string('avatar')->nullable();
+            //
         });
     }
 
@@ -22,9 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Menghapus kolom 'avatar' dari tabel 'm_user'
         Schema::table('m_user', function (Blueprint $table) {
-            $table->dropColumn('avatar');
+            //
         });
     }
 };

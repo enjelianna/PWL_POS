@@ -1,18 +1,20 @@
-<form action="{{ url('/level/import_ajax') }}" method="POST" id="form-import" enctype="multipart/form-data">
+<form action="{{ url('/level/import_ajax') }}" method="POST" id="form-import-level" enctype="multipart/form-data">
     @csrf
-    <div id="modal-master" class="modal-dialog modal-lg" role="document">
+    <div id="modal-level" class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Import Data level</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
+                <h5 class="modal-title" id="exampleModalLabel">Import Data Level</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
                     <label>Download Template</label>
-                    <a href="{{ asset('template_level.xlsx') }}" class="btn btn-info btn-sm" download><i
-                            class="fa fa-file-excel"></i>Download</a>
-                    <small id="error-kategori_id" class="error-text form-text text-danger"></small>
+                    <a href="{{ asset('template_level.xlsx') }}" class="btn btn-info btn-sm" download>
+                        <i class="fa fa-file-excel"></i> Download
+                    </a>
+                    <small id="error-template" class="error-text form-text text-danger"></small>
                 </div>
                 <div class="form-group">
                     <label>Pilih File</label>
@@ -27,9 +29,10 @@
         </div>
     </div>
 </form>
+
 <script>
     $(document).ready(function() {
-        $("#form-import").validate({
+        $("#form-import-level").validate({
             rules: {
                 file_level: {
                     required: true,
@@ -37,23 +40,23 @@
                 },
             },
             submitHandler: function(form) {
-                var formData = new FormData(form); // Jadikan form ke FormData untuk menghandle file
+                var formData = new FormData(form); // Handle file using FormData
                 $.ajax({
                     url: form.action,
                     type: form.method,
-                    data: formData, // Data yang dikirim berupa FormData
-                    processData: false, // setting processData dan contentType ke false, untuk menghandle file
-                    contentType: false,
+                    data: formData, // Send FormData to handle file
+                    processData: false, // Do not process data
+                    contentType: false, // Do not set contentType
                     success: function(response) {
-                        if (response.status) { // jika sukses
-                            $('#myModal').modal('hide');
+                        if (response.status) { // if success
+                            $('#modal-level').modal('hide');
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Berhasil',
                                 text: response.message
                             });
-                            tableLevel.ajax.reload(); // reload datatable
-                        } else { // jika error
+                            tableLevel.ajax.reload(); // Reload datatable
+                        } else { // if error
                             $('.error-text').text('');
                             $.each(response.msgField, function(prefix, val) {
                                 $('#error-' + prefix).text(val[0]);

@@ -34,83 +34,65 @@
             </div>
         </div>
 
+        <!-- Profile Settings Section -->
         <div class="col-md-9">
             <div class="card">
-                <div class="card-header p-2">
-                    <ul class="nav nav-pills">
-                        <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Activity</a></li>
-                    </ul>
-                </div><!-- /.card-header -->
+                <div class="card-header">{{ __('Profile Settings') }}</div>
 
                 <div class="card-body">
-                    <div class="tab-content">
-                        <div class="active tab-pane" id="activity">
-                            <!-- Post -->
-                            <div class="post">
-                                <div class="user-block">
-                                    <div class="active tab-pane" id="activity">
-                                        <!-- Post -->
-                                        <div class="post">
-                                            <div class="user-block">
-                                                <img class="img-circle img-bordered-sm" src="{{ auth()->user()->avatar ? asset('storage/avatars/' . auth()->user()->avatar) : asset('images/default-avatar.png') }}" 
-                                        <span class="username">
-                                        <a href="#"> Angelia Anna Putri Razali</a>
-                                        <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                                    </span>
-                                    <span class="description">Malang - 7:30 PM today</span>
-                                </div>
-                                <p>.......</p>
-                                <p>
-                                    <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                                    <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
-                                    <span class="float-right">
-                                        <a href="#" class="link-black text-sm"><i class="far fa-comments mr-1"></i> Comments (5)</a>
-                                    </span>
-                                </p>
-                                <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
-                            </div>
+                    <form method="POST" action="{{ url('/profil/update') }}" enctype="multipart/form-data">
+                        @csrf
+                    
+                        <!-- User Level -->
+                        <div class="form-group">
+                            <label for="level">{{ __('Level Pengguna') }}</label>
+                            <input type="text" id="level" name="level" class="form-control" value="{{ auth()->user()->level->level_nama }}" readonly>
                         </div>
-
-                        
-                            <form class="form-horizontal">
-                                <div class="form-group row">
-                                    <label for="inputName" class="col-sm-2 col-form-label">Name</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputName" placeholder="Name">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                                    <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="inputExperience" class="col-sm-2 col-form-label">Password</label>
-                                    <div class="col-sm-10">
-                                        <textarea class="form-control" id="inputExperience" placeholder="Password"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="offset-sm-2 col-sm-10">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="offset-sm-2 col-sm-10">
-                                        <button type="submit" class="btn btn-danger">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
+                    
+                        <!-- Username -->
+                        <div class="form-group">
+                            <label for="username">{{ __('Username') }}</label>
+                            <input type="text" id="username" name="username" class="form-control" value="{{ auth()->user()->username }}" readonly>
                         </div>
-                    </div>
+                    
+                        <!-- Name -->
+                        <div class="form-group">
+                            <label for="nama">{{ __('Nama') }}</label>
+                            <input type="text" id="nama" name="nama" class="form-control" value="{{ auth()->user()->nama }}" required>
+                        </div>
+                    
+                        <!-- Password -->
+                        <div class="form-group">
+                            <label for="password">{{ __('Password') }}</label>
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Abaikan jika tidak ingin ubah password">
+                        </div>
+                    
+                        <!-- Confirm Password -->
+                        <div class="form-group">
+                            <label for="password_confirmation">{{ __('Konfirmasi Password') }}</label>
+                            <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" placeholder="Masukkan kembali password jika ingin mengubah">
+                        </div>
+                    
+                        <!-- Submit Button -->
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">{{ __('Update Profile') }}</button>
+                        </div>
+                    
+                    </form>
+                    
                 </div>
             </div>
         </div>
+        <!-- /.col -->
     </div>
-</div>
+    <!-- /.row -->
+</div><!-- /.container-fluid -->
+@endsection
+
+@section('scripts')
+<script>
+    document.getElementById('avatar').onchange = function () {
+        this.nextElementSibling.innerHTML = this.files[0].name;
+    };
+</script>
 @endsection

@@ -17,7 +17,7 @@
         </div>
     </div>
 @else
-    <form action="{{ url('/user/' . $user->user_id.'/update_ajax') }}" method="POST" id="form-edit">
+    <form action="{{ url('/user/' . $user->user_id . '/update_ajax') }}" method="POST" id="form-edit">
         @csrf
         @method('PUT')
         <div id="modal-master" class="modal-dialog modal-lg" role="document">
@@ -34,8 +34,9 @@
                         <select name="level_id" id="level_id" class="form-control" required>
                             <option value="">- Pilih Level -</option>
                             @foreach($level as $l)
-                                <option {{ ($l->level_id == $user->level_id) ? 'selected' : '' }} 
-                                value="{{ $l->level_id }}">{{ $l->level_nama }}</option>
+                                <option {{ ($l->level_id == $user->level_id) ? 'selected' : '' }} value="{{ $l->level_id }}">
+                                    {{ $l->level_nama }}
+                                </option>
                             @endforeach
                         </select>
                         <small id="error-level_id" class="error-text form-text text-danger"></small>
@@ -64,7 +65,6 @@
             </div>
         </div>
     </form>
-
     <script>
         $(document).ready(function() {
             $("#form-edit").validate({

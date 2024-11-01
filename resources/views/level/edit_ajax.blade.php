@@ -3,8 +3,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Kesalahan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria label="Close"><span
-                        aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <div class="alert alert-danger">
@@ -16,28 +17,27 @@
         </div>
     </div>
 @else
-    <form action="{{ url('/level/' . $level->level_id . '/update_ajax') }}" method="POST" id="form-edit">
+    <form action="{{ url('/level/' . $level->level_id . '/update_ajax') }}" method="POST" id="form-edit-level">
         @csrf
         @method('PUT')
         <div id="modal-master" class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Edit Data Level</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria label="Close"><span
-                            aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Level Nama</label>
-                        <input value="{{ $level->level_nama }}" type="text" name="level_nama" id="level_nama"
-                            class="form-control" required>
-                        <small id="error-level_nama" class="error-text form-text text-danger"></small>
+                        <label>Kode Level</label>
+                        <input value="{{ $level->level_kode }}" type="text" name="level_kode" id="level_kode" class="form-control" required>
+                        <small id="error-level_kode" class="error-text form-text text-danger"></small>
                     </div>
                     <div class="form-group">
-                        <label>Level Kode</label>
-                        <input value="{{ $level->level_kode }}" type="text" name="level_kode" id="name"
-                            class="form-control" required>
-                        <small id="error-level_kode" class="error-text form-text text-danger"></small>
+                        <label>Nama Level</label>
+                        <input value="{{ $level->level_nama }}" type="text" name="level_nama" id="level_nama" class="form-control" required>
+                        <small id="error-level_nama" class="error-text form-text text-danger"></small>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -47,19 +47,12 @@
             </div>
         </div>
     </form>
+
     <script>
         $(document).ready(function() {
-            $("#form-edit").validate({
+            $("#form-edit-level").validate({
                 rules: {
-                    level_kode: {
-                        required: true,
-                        minlength: 3,
-                        maxlength: 10
-                    },
-                    level_nama: {
-                        required: true,
-                        maxlength: 100
-                    },
+                    level_nama: { required: true, minlength: 3, maxlength: 100 }
                 },
                 submitHandler: function(form) {
                     $.ajax({
